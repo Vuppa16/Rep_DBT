@@ -1,0 +1,38 @@
+version: 2
+
+sources:
+  - name: sch1
+    database: db_sales
+    schema: sch_sales
+    tables:
+      - name: dept
+        description: This table Contains all the Departments and locations related information.
+        columns:
+          - name: deptno
+            description: Primary key of the dept table
+            tests:
+              - unique
+              - not_null
+          - name: dname
+            tests:
+              - not_null
+          - name: loc
+            tests:
+             - not_null
+             - accepted_values:
+                 values: ['HYD', 'SEC', 'BNG', 'PUNE']
+
+      - name: emp
+        description: This table Contains all the Employees and their salaries  related information.
+        columns:
+          - name: id
+            tests:
+            - not_null
+            - unique
+          - name: name
+          - name: salary
+          - name: deptno
+           ## tests:
+           ## - relationships:
+            ##  to: ref('dept')
+             ## field: deptno
